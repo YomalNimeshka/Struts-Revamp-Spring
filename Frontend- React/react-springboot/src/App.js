@@ -5,6 +5,7 @@ import LoginComponent from './components/LoginComponent';
 import ViewPageComponent from './components/ViewPageComponent';
 import AddEmployeeComponent from './components/AddEmployeeComponent';
 import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
+import PageManagement from "./components/PageManagement";
 
 import NavBar from './components/NavBar';
 
@@ -24,6 +25,7 @@ function App() {
               <Route path="/AllEmployees" component={ListEmployeeComponent} ></Route>
               <Route path="/AddEmployees" component={AddEmployeeComponent} ></Route>
               <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent} ></Route>
+              <Route path="/pageManagement" component={PageManagement} ></Route>
           </Switch>
         </div>
       </Router>

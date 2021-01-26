@@ -13,5 +13,10 @@ export const SideBarData = [
         title: 'AllEmployees',
         path: '/AllEmployees',
         cName: 'nav-text'
+    },
+    {
+        title: 'Page Management',
+        path: '/pageManagement',
+        cName: 'nav-text'
     }
 ]

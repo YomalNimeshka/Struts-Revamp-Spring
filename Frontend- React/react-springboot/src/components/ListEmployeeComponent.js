@@ -156,7 +156,7 @@ class ListEmployeeComponent extends Component {
         const lastIndex = currentPage * usersPerPage;
         const firstIndex = lastIndex - usersPerPage;
         const currentUsers = employees.slice(firstIndex, lastIndex);
-        const totalPages = employees.length / usersPerPage;
+        const totalPages = Math.ceil(employees.length / usersPerPage);
 
         const PageNumCss = {
             width: "45px",
@@ -215,9 +215,9 @@ class ListEmployeeComponent extends Component {
                     </Card.Body>
                     <Card.Footer>
                         <div>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.pdfReport}>Download PDF</button>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.excelReport}>Download Excel</button>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.csvReport}>Download CSV</button>
+                            <button style={{width:"auto",marginRight:"5px"}} className="btn btn-primary" onClick={this.pdfReport}>Download PDF</button>
+                            <button style={{width:"auto", marginRight:"5px"}} className="btn btn-primary" onClick={this.excelReport}>Download Excel</button>
+                            <button style={{width:"auto", marginRight:"5px"}} className="btn btn-primary" onClick={this.csvReport}>Download CSV</button>
                         </div>
                         <div style={{"marginTop":"5px"}}>
                            <input onChange={this.onFileChange} type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"></input>
