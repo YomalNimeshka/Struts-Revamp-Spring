@@ -24,6 +24,10 @@ public class PageSectionREST {
     public List<PageManagement> findAll(){
         return pageManagementIF.findAll();
     }
+    @GetMapping("PageMRecord/{pageCode}")
+    public PageManagement getPageD(@PathVariable String pageCode){
+        return pageManagementIF.findById(pageCode);
+    }
     @PostMapping("AddPage")
     public PageManagement AddEmployee(@RequestBody PageManagement pageManagement) {
         pageManagementIF.save(pageManagement);

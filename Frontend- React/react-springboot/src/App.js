@@ -6,32 +6,38 @@ import ViewPageComponent from './components/ViewPageComponent';
 import AddEmployeeComponent from './components/AddEmployeeComponent';
 import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 import PageManagement from "./components/PageManagement";
+import AddUpdatePageM from "./components/AddUpdatePageM";
+import UpdatePageManagementData from "./components/updatePageManagementData";
 
 import NavBar from './components/NavBar';
-
+import React from "react";
 
 
 function App() {
-  return (
-    <div className="Container">
-     
-      <Router>
-        <NavBar/>
-        <div className="container">
-        
-          <Switch>
-              <Route path="/" exact component={ViewPageComponent} ></Route>
-              <Route path="/Login" component={LoginComponent} ></Route>
-              <Route path="/AllEmployees" component={ListEmployeeComponent} ></Route>
-              <Route path="/AddEmployees" component={AddEmployeeComponent} ></Route>
-              <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent} ></Route>
-              <Route path="/pageManagement" component={PageManagement} ></Route>
-          </Switch>
+    return (
+        <div className="Container">
+            <div style={{backgroundColor: '#060b26', height: '100%'}}>
+
+                <Router >
+                    <NavBar/>
+
+
+                        <Switch>
+                            <Route path="/" exact component={ViewPageComponent}></Route>
+                            <Route path="/Login" component={LoginComponent}></Route>
+                            <Route path="/AllEmployees" component={ListEmployeeComponent}></Route>
+                            <Route path="/AddEmployees" component={AddEmployeeComponent}></Route>
+                            <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent}></Route>
+                            <Route path="/pageManagement" component={PageManagement}></Route>
+                            <Route path="/AddUpdatePageM" component={AddUpdatePageM}></Route>
+                            <Route path="/UpdatePageManagementData/:pageCode" component={UpdatePageManagementData}></Route>
+                        </Switch>
+
+                </Router>
+            </div>
+
         </div>
-      </Router>
-      
-    </div>
-  );
+    );
 }
 
 export default App;

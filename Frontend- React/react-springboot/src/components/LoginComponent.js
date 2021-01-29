@@ -31,12 +31,13 @@ class LoginComponent extends Component {
             console.log("login value 2: "+canLogin);
 
             //if login value is 1 means that there is a user can that user can now login
-            if(canLogin == 1){
+            if(canLogin === 1){
                 this.setState({loginMessage: 'Login Success'});
                 this.props.history.push('/AllEmployees');
 
+
             //if login value is 0 means there is no user as such so the user cannot login
-            }else if(canLogin == 0){
+            }else if(canLogin === 0){
                 this.setState({loginMessage: 'Login Failed. UserName or Password maybe wrong.'});
                 this.props.history.push('/Login');
             }

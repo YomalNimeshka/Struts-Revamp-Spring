@@ -15,9 +15,7 @@ class UpdateEmployeeComponent extends Component {
         this.changeNameHandler = this.changeNameHandler.bind(this);
         this.changeSalaryHandler = this.changeSalaryHandler.bind(this);
         this.changeDesignationHandler = this.changeDesignationHandler.bind(this);
-
         this.updateEmp = this.updateEmp.bind(this);
-        
     }
 
     componentDidMount(){

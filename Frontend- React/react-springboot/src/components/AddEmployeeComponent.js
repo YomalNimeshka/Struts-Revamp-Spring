@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EmployeeService from '../services/EmployeeService';
-import {decode as base64_decode, encode as base64_encode} from 'base-64';
+import {encode as base64_encode} from 'base-64';
 
 class AddEmployeeComponent extends Component {
     constructor(props){
