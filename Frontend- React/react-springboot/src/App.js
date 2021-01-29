@@ -7,6 +7,9 @@ import AddEmployeeComponent from './components/AddEmployeeComponent';
 import UpdateEmployeeComponent from './components/UpdateEmployeeComponent';
 
 import NavBar from './components/NavBar';
+import ListSectionComponent from './components/sectionCompoments/ListSectionComponent';
+import AddSectionComponent from './components/sectionCompoments/AddSectionComponent';
+import UpdateSectionComponent from './components/sectionCompoments/UpdateSectionComponent';
 
 
 
@@ -24,6 +27,10 @@ function App() {
               <Route path="/AllEmployees" component={ListEmployeeComponent} ></Route>
               <Route path="/AddEmployees" component={AddEmployeeComponent} ></Route>
               <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent} ></Route>
+
+              <Route path="/Section-Mgt/All-Sections" component={ListSectionComponent} ></Route>
+              <Route path="/Section-Mgt/Add-Section" component={AddSectionComponent} ></Route>
+              <Route path="/Section-Mgt/Update-Section/:sectionCode" component={UpdateSectionComponent} ></Route>
           </Switch>
         </div>
       </Router>
