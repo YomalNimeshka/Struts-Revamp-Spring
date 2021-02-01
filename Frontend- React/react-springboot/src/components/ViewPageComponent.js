@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Jumbotron,Container}  from "react-bootstrap";
 
 class ViewPageComponent extends Component {
     constructor(props){
@@ -14,9 +15,19 @@ class ViewPageComponent extends Component {
         this.props.history.push('/Login');
     }
     render() {
+        const container={
+            paddingLeft : '250px',
+            paddingRight : '200px'
+        };
         return (
-            <div>
-                <button className="btn btn-primary" onClick={this.goToLogin}>Login</button>
+            <div style={container}>
+                <Jumbotron fluid>
+                    <Container>
+                        <h1>Welcome</h1>
+                        <button className="btn btn-primary" onClick={this.goToLogin}>Login</button>
+                    </Container>
+                </Jumbotron>
+
             </div>
         );
     }

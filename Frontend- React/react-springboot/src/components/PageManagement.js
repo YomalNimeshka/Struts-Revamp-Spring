@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PageManagementService from "../services/PageManagementService";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button, Card, FormControl, InputGroup, Table} from "react-bootstrap";
@@ -89,7 +89,7 @@ class PageManagement extends  React.Component{
         };
 
         const container={
-            paddingLeft : '200px',
+            paddingLeft : '250px',
             paddingRight : '200px'
         };
 

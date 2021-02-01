@@ -163,7 +163,8 @@ class ListEmployeeComponent extends Component {
             fontSize: '13px'
         };
         const container={
-            paddingLeft : '100px'
+            paddingLeft : '250px',
+            paddingRight : '200px'
         };
 
         return (

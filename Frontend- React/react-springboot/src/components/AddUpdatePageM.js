@@ -45,7 +45,7 @@ class AddUpdatePageM extends React.Component {
 
     render() {
         const container = {
-            paddingLeft: '200px',
+            paddingLeft: '250px',
             paddingRight: '200px'
         };
         return (

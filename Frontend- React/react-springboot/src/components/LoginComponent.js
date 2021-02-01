@@ -60,8 +60,13 @@ class LoginComponent extends Component {
             fontWeight: 'bold',
             fontSize: '13px'
         }
+        const container={
+            paddingLeft : '250px',
+            paddingRight : '200px'
+        };
         return (
-            <div>
+
+            <div style={container}>
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
