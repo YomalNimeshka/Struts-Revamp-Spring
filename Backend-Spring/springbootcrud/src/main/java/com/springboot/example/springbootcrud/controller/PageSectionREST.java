@@ -1,6 +1,5 @@
 package com.springboot.example.springbootcrud.controller;
 
-import com.springboot.example.springbootcrud.entity.Employee;
 import com.springboot.example.springbootcrud.entity.PageManagement;
 import com.springboot.example.springbootcrud.service.PageManagementIF;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,12 @@ public class PageSectionREST {
     public PageManagement getPageD(@PathVariable String pageCode){
         return pageManagementIF.findById(pageCode);
     }
+
+    @GetMapping("SearchPageMRecord/{val}")
+    public List<PageManagement> searchPageD(@PathVariable String val){
+        return pageManagementIF.searchPages(val);
+    }
+
     @PostMapping("AddPage")
     public PageManagement AddEmployee(@RequestBody PageManagement pageManagement) {
         pageManagementIF.save(pageManagement);

@@ -53,4 +53,10 @@ public class PageManagementService implements PageManagementIF {
 
     }
 
+    @Override
+    public List<PageManagement> searchPages(String val) {
+
+        return pageManagementRepo.SearchPages(val);
+    }
+
 }

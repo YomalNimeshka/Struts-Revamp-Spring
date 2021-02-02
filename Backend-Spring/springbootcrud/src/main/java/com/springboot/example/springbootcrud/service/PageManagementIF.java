@@ -14,5 +14,8 @@ public interface PageManagementIF {
 
     public void deleteById(String theId);
 
+    public List<PageManagement> searchPages(String val);
+
+
 
 }

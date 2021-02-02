@@ -1,7 +1,7 @@
 import React from 'react';
 import PageManagementService from "../services/PageManagementService";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Button, Card, Col, Form, FormControl, InputGroup, Table} from "react-bootstrap";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 toast.configure()
@@ -12,8 +12,11 @@ class PageManagement extends  React.Component{
         super(props)
         this.state = {
             pageManagementData:[],
+            searchData:[],
             currentPage:1,
             pageManagementDataPerPage:5,
+            pageSearch:""
+
         }
         this.deletePageManagementData = this.deletePageManagementData.bind(this);
     }
@@ -34,6 +37,9 @@ class PageManagement extends  React.Component{
         })
 
 
+    }
+    addPage = (event) => {
+        this.setState({[event.target.name]: event.target.value});
     }
     changePage = event => {
         this.setState({
@@ -74,6 +80,27 @@ class PageManagement extends  React.Component{
         }
     }
 
+    SearchPage= (event)=>{
+        if(this.state.pageSearch ===""){
+            console.log("running if ");
+            PageManagementService.getPageManagementData().then((res)=>{
+                this.setState({ pageManagementData: res.data});
+                console.log(res.data);
+            })
+        }else {
+            console.log("running else");
+            PageManagementService.SearchPageManagementData(this.state.pageSearch).then( (res) =>{
+                this.setState({ pageManagementData: res.data});
+                console.log(res.data);
+            });
+            console.log("running else end");
+        }
+
+        console.log(this.state.pageSearch);
+        event.preventDefault();
+
+    }
+
     render() {
         const {pageManagementData, currentPage, pageManagementDataPerPage}= this.state;
         const lastIndex = currentPage * pageManagementDataPerPage;
@@ -99,6 +126,15 @@ class PageManagement extends  React.Component{
                 <Card className={"border border-dark bg-dark text-white"}>
                     <Card.Header><h3>Page Management</h3></Card.Header>
                     <Card.Body>
+                        <Form id='SearchPage' onSubmit={this.SearchPage}>
+                            <Form.Group  controlId='pageCode'>
+                                <Form.Label> Page Code</Form.Label>
+                                <Form.Control type="text" name='pageSearch'
+                                              placeholder="Page Code to search" value={this.state.pageSearch}
+                                              onChange={this.addPage}/>
+                            </Form.Group>
+                            <Button variant="primary" type="submit">Search</Button>
+                        </Form>
                         <Button variant="secondary"
                                 onClick={() => this.props.history.push('/AddUpdatePageM')}>Add
                             New page</Button>
