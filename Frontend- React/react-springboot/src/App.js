@@ -10,6 +10,9 @@ import NavBar from './components/NavBar';
 import ListSectionComponent from './components/sectionCompoments/ListSectionComponent';
 import AddSectionComponent from './components/sectionCompoments/AddSectionComponent';
 import UpdateSectionComponent from './components/sectionCompoments/UpdateSectionComponent';
+import ListUserComponent from './components/userManagementComponents/ListUserComponent';
+import AddUserComponent from './components/userManagementComponents/AddUserComponent';
+import UpdateUserComponent from './components/userManagementComponents/UpdateUserComponent';
 
 
 
@@ -31,6 +34,10 @@ function App() {
               <Route path="/Section-Mgt/All-Sections" component={ListSectionComponent} ></Route>
               <Route path="/Section-Mgt/Add-Section" component={AddSectionComponent} ></Route>
               <Route path="/Section-Mgt/Update-Section/:sectionCode" component={UpdateSectionComponent} ></Route>
+
+              <Route path="/User-Mgt/All-Users" component={ListUserComponent} ></Route>
+              <Route path="/User-Mgt/Add-User" component={AddUserComponent} ></Route>
+              <Route path="/User-Mgt/Update-User/:employeeId" component={UpdateUserComponent} ></Route>
           </Switch>
         </div>
       </Router>
