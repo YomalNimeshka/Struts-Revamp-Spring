@@ -61,4 +61,9 @@ public class UserMgtController {
         UserManagement user = userMgtService.getUserWithId(employeeId);
         userMgtService.deleteUser(employeeId);
     }
+
+    @GetMapping("SearchUserData/{val}")
+    public List<UserManagement> searchPageD(@PathVariable String val){
+        return userMgtService.searchUserRoleData(val);
+    }
 }

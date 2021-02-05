@@ -72,4 +72,13 @@ public class UserMgtDAOImpl implements UserMgtDAO {
         theQuery.setParameter("id",userId);
         theQuery.executeUpdate();
     }
+
+    @Override
+    public List<UserManagement> searchUserRoleData(String val) {
+        Session currentSession =entityManager.unwrap(Session.class);
+        Query<UserManagement> theQuery = currentSession.createQuery("from UserManagement where userRole=:userrole");
+        theQuery.setParameter("userrole" ,val);
+        List<UserManagement> users = theQuery.getResultList();
+        return users;
+    }
 }

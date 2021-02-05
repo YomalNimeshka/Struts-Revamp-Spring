@@ -6,6 +6,7 @@ const USER_API_ADD_URL = "http://localhost:8080/api/v1/User Mgt/Add Users";
 const USER_API_GET_EMPLOYEEID_URL = "http://localhost:8080/api/v1/User Mgt/EmployeeId";
 const USER_API_UPDATE_URL = "http://localhost:8080/api/v1/User Mgt/UpdateUser";
 const USER_API_DELETE_URL = "http://localhost:8080/api/v1/User Mgt/DeleteUser";
+const USER_API_SEARCH_URL = "http://localhost:8080/api/v1/User Mgt/SearchUserData";
 
 class UserMgtService{
 
@@ -30,6 +31,10 @@ class UserMgtService{
 
     deleteUser(employeeId){
         return axios.delete(USER_API_DELETE_URL+'/'+employeeId);
+    }
+
+    searchUser(searchType){
+        return axios.get(USER_API_SEARCH_URL+'/'+searchType)
     }
 
 

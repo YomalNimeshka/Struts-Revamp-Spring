@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Card, Table, Button, InputGroup, FormControl} from 'react-bootstrap';
+import {Card, Table, Button, InputGroup, FormControl, Form, Col} from 'react-bootstrap';
 import UserMgtService from '../../services/UserMgtService';
 
 class ListUserComponent extends Component {
@@ -10,12 +10,15 @@ class ListUserComponent extends Component {
         this.state = {
             users:[],
             currentPage:1,
-            usersPerPage:5
+            usersPerPage:5,
+            userTypeSearch:''
         }
 
         this.addUser = this.addUser.bind(this);
         this.editUser = this.editUser.bind(this);
         this.deleteUser = this.deleteUser.bind(this);
+
+        this.changeCodeSearch = this.changeCodeSearch.bind(this);
         
         
     }
@@ -87,6 +90,32 @@ class ListUserComponent extends Component {
         }
     }
 
+    //search
+    SearchUserType = (event) => {
+
+        if (this.state.userTypeSearch === "") {
+            console.log("running if ");
+            UserMgtService.getUsers().then((res) => {
+                this.setState({users: res.data});
+                console.log(res.data);
+            })
+        } else {
+            console.log("running else");
+            UserMgtService.searchUser(this.state.userTypeSearch).then((res) => {
+                this.setState({users: res.data});
+                console.log(res.data);
+            });
+            console.log("running else end");
+        }
+
+        console.log(this.state.userTypeSearch);
+        event.preventDefault();
+    }
+
+    
+    changeCodeSearch=(event)=>{
+        this.setState({userTypeSearch: event.target.value});
+    }
     
     render() {
         const {users, currentPage, usersPerPage}= this.state;
@@ -120,6 +149,18 @@ class ListUserComponent extends Component {
                     <button style={{"width":"auto"}} className="btn btn-primary" onClick={this.addUser}>Add User</button>
                     
                     <Card.Body>
+                        <Form id='SearchUserType' onSubmit={this.SearchUserType}>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="11" controlId='userCode'>
+                                        <Form.Control type="text" name='userTypeSearch'
+                                                    placeholder="User Role Code to search" value={this.state.userTypeSearch}
+                                                    onChange={this.changeCodeSearch}/>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="1">
+                                        <Button variant="primary" type="submit">Search</Button>
+                                    </Form.Group>
+                                </Form.Row>
+                            </Form>
                         <Table bordered hover striped variant="dark">
                             <thead>
                                 <tr>

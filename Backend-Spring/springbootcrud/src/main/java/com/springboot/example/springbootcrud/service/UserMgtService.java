@@ -10,4 +10,6 @@ public interface UserMgtService {
     UserManagement getUserWithId(int id);
     void updateUser(UserManagement user);
     void deleteUser(int userId);
+
+    List<UserManagement> searchUserRoleData(String val);
 }

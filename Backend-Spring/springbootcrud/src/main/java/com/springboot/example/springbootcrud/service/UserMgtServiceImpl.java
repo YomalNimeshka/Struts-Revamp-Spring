@@ -47,4 +47,10 @@ public class UserMgtServiceImpl implements UserMgtService {
     public void deleteUser(int userId) {
         userMgtDAO.deleteUser(userId);
     }
+
+    @Override
+    @Transactional
+    public List<UserManagement> searchUserRoleData(String val) {
+        return userMgtDAO.searchUserRoleData(val);
+    }
 }
