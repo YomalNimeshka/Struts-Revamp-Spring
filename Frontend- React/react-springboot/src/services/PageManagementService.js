@@ -29,6 +29,7 @@ class PageManagementService{
 
     SearchPageManagementData(SearchVal){
         return axios.get(PageManagementService_API_Search_URL+'/'+SearchVal);
+
     }
 
     updateEmployee(pageD){

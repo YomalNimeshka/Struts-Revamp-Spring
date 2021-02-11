@@ -1,38 +1,39 @@
 import React from 'react';
 import PageManagementService from "../services/PageManagementService";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Card, Col, Form, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Button, Card, Form, FormControl, InputGroup, Table,Col} from "react-bootstrap";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 toast.configure()
 
 
-class PageManagement extends  React.Component{
-    constructor(props){
+class PageManagement extends React.Component {
+    constructor(props) {
         super(props)
         this.state = {
-            pageManagementData:[],
-            searchData:[],
-            currentPage:1,
-            pageManagementDataPerPage:5,
+            pageManagementData: [],
+            currentPage: 1,
+            pageManagementDataPerPage: 5,
             pageSearch:""
-
         }
-        this.deletePageManagementData = this.deletePageManagementData.bind(this);
+
     }
-    componentDidMount(){
-        PageManagementService.getPageManagementData().then((res)=>{
-            this.setState({ pageManagementData: res.data});
+
+    componentDidMount() {
+        PageManagementService.getPageManagementData().then((res) => {
+            this.setState({pageManagementData: res.data});
             console.log(res.data);
         })
     }
-    update=(pageCode)=>{
+
+    update = (pageCode) => {
         this.props.history.push(`/UpdatePageManagementData/${pageCode}`);
     }
 
-    deletePageManagementData(pageCode){
+    deletePageManagementData = (pageCode) => {
         alert(pageCode);
-        PageManagementService.deletePageManagementData(pageCode).then((res)=>{
+        PageManagementService.deletePageManagementData(pageCode).then((res) => {
             this.setState({pageManagementData: this.state.pageManagementData.filter(PageManagementData => PageManagementData.pageCode !== pageCode)});
         })
 
@@ -48,15 +49,15 @@ class PageManagement extends  React.Component{
     }
 
     firstPage = () => {
-        if(this.state.currentPage > 1){
+        if (this.state.currentPage > 1) {
             this.setState({
-                currentPage:1
+                currentPage: 1
             });
         }
     }
 
     prevPage = () => {
-        if(this.state.currentPage > 1){
+        if (this.state.currentPage > 1) {
             this.setState({
                 currentPage: this.state.currentPage - 1
             });
@@ -65,7 +66,7 @@ class PageManagement extends  React.Component{
     }
 
     nextPage = () => {
-        if(this.state.currentPage < Math.ceil(this.state.pageManagementData.length / this.state.pageManagementDataPerPage)){
+        if (this.state.currentPage < Math.ceil(this.state.pageManagementData.length / this.state.pageManagementDataPerPage)) {
             this.setState({
                 currentPage: this.state.currentPage + 1
             });
@@ -73,24 +74,24 @@ class PageManagement extends  React.Component{
     }
 
     lastPage = () => {
-        if(this.state.currentPage < Math.ceil(this.state.pageManagementData.length / this.state.pageManagementDataPerPage)){
+        if (this.state.currentPage < Math.ceil(this.state.pageManagementData.length / this.state.pageManagementDataPerPage)) {
             this.setState({
                 currentPage: Math.ceil(this.state.pageManagementData.length / this.state.pageManagementDataPerPage)
             });
         }
     }
 
-    SearchPage= (event)=>{
-        if(this.state.pageSearch ===""){
+    SearchPage = (event) => {
+        if (this.state.pageSearch === "") {
             console.log("running if ");
-            PageManagementService.getPageManagementData().then((res)=>{
-                this.setState({ pageManagementData: res.data});
+            PageManagementService.getPageManagementData().then((res) => {
+                this.setState({pageManagementData: res.data});
                 console.log(res.data);
             })
-        }else {
+        } else {
             console.log("running else");
-            PageManagementService.SearchPageManagementData(this.state.pageSearch).then( (res) =>{
-                this.setState({ pageManagementData: res.data});
+            PageManagementService.SearchPageManagementData(this.state.pageSearch).then((res) => {
+                this.setState({pageManagementData: res.data});
                 console.log(res.data);
             });
             console.log("running else end");
@@ -102,7 +103,7 @@ class PageManagement extends  React.Component{
     }
 
     render() {
-        const {pageManagementData, currentPage, pageManagementDataPerPage}= this.state;
+        const {pageManagementData, currentPage, pageManagementDataPerPage} = this.state;
         const lastIndex = currentPage * pageManagementDataPerPage;
         const firstIndex = lastIndex - pageManagementDataPerPage;
         const currentPageManagementData = pageManagementData.slice(firstIndex, lastIndex);
@@ -115,25 +116,29 @@ class PageManagement extends  React.Component{
             fontWeight: "bold"
         };
 
-        const container={
-            paddingLeft : '250px',
-            paddingRight : '200px'
+        const container = {
+            paddingLeft: '250px',
+            paddingRight: '200px'
         };
 
-        return(
+        return (
 
             <div style={container}>
                 <Card className={"border border-dark bg-dark text-white"}>
                     <Card.Header><h3>Page Management</h3></Card.Header>
                     <Card.Body>
                         <Form id='SearchPage' onSubmit={this.SearchPage}>
-                            <Form.Group  controlId='pageCode'>
-                                <Form.Label> Page Code</Form.Label>
-                                <Form.Control type="text" name='pageSearch'
-                                              placeholder="Page Code to search" value={this.state.pageSearch}
-                                              onChange={this.addPage}/>
-                            </Form.Group>
-                            <Button variant="primary" type="submit">Search</Button>
+                            <Form.Row>
+                                <Form.Group as={Col} md="11" controlId='searchPageCode'>
+                                    <Form.Control type="text" name='pageSearch'
+                                                  placeholder="Page Code to search" value={this.state.pageSearch}
+                                                  onChange={this.addPage}/>
+                                </Form.Group>
+                                <Form.Group  as={Col} md="1"controlId='SearchButton'>
+
+                                    <Button variant="primary" type="submit">Search</Button>
+                                </Form.Group>
+                            </Form.Row>
                         </Form>
                         <Button variant="secondary"
                                 onClick={() => this.props.history.push('/AddUpdatePageM')}>Add
@@ -156,7 +161,7 @@ class PageManagement extends  React.Component{
                             {
                                 currentPageManagementData.map(
                                     PageManagementData =>
-                                        <tr key = {PageManagementData.pageCode}>
+                                        <tr key={PageManagementData.pageCode}>
                                             <td>{PageManagementData.pageCode}</td>
                                             <td>{PageManagementData.description}</td>
                                             <td>{PageManagementData.url}</td>
@@ -164,10 +169,18 @@ class PageManagement extends  React.Component{
                                             <td>{PageManagementData.status}</td>
                                             <td>{PageManagementData.dualAuth}</td>
                                             <td>
-                                                <button onClick= { () => this.update(PageManagementData.pageCode)} className="btn btn-info">Update</button>
+                                                <button onClick={() => this.update(PageManagementData.pageCode)}
+                                                        className="btn btn-info">Update
+                                                </button>
                                             </td>
-                                            <td><button onClick= { () =>{if(window.confirm('Are you sure to delete this record?'))
-                                                        {this.deletePageManagementData(PageManagementData.pageCode)}}} className="btn btn-danger">Delete</button></td>
+                                            <td>
+                                                <button onClick={() => {
+                                                    if (window.confirm('Are you sure to delete this record?')) {
+                                                        this.deletePageManagementData(PageManagementData.pageCode)
+                                                    }
+                                                }} className="btn btn-danger">Delete
+                                                </button>
+                                            </td>
                                         </tr>
                                 )
                             }
@@ -177,30 +190,35 @@ class PageManagement extends  React.Component{
                         </Table>
                     </Card.Body>
                     <Card.Footer>
-                        <div style={{"float":"left"}}>
+                        <div style={{"float": "left"}}>
                             Showing Page {currentPage} of {(totalPages)}
                         </div>
-                        <div style={{"float":"right"}}>
+                        <div style={{"float": "right"}}>
                             <InputGroup size="50">
                                 <InputGroup.Prepend>
-                                    <Button type="button" variant="outline-info" disabled={currentPage === 1? true : false}
+                                    <Button type="button" variant="outline-info"
+                                            disabled={currentPage === 1 ? true : false}
                                             onClick={this.firstPage}>
                                         First
 
                                     </Button>
-                                    <Button type="button" variant="outline-info" disabled={currentPage === 1? true : false}
+                                    <Button type="button" variant="outline-info"
+                                            disabled={currentPage === 1 ? true : false}
                                             onClick={this.prevPage}>
                                         Prev
                                     </Button>
                                 </InputGroup.Prepend>
-                                <FormControl style={PageNumCss} className="bg-dark" name="currentPage" value={currentPage}
-                                             onChange={this.changePage} />
+                                <FormControl style={PageNumCss} className="bg-dark" name="currentPage"
+                                             value={currentPage}
+                                             onChange={this.changePage}/>
                                 <InputGroup.Append>
-                                    <Button type="button" variant="outline-info" disabled={currentPage === totalPages? true : false}
+                                    <Button type="button" variant="outline-info"
+                                            disabled={currentPage === totalPages ? true : false}
                                             onClick={this.nextPage}>
                                         Next
                                     </Button>
-                                    <Button type="button" variant="outline-info" disabled={currentPage === totalPages? true : false}
+                                    <Button type="button" variant="outline-info"
+                                            disabled={currentPage === totalPages ? true : false}
                                             onClick={this.lastPage}>
                                         Last
                                     </Button>
@@ -214,8 +232,8 @@ class PageManagement extends  React.Component{
         )
 
 
-
     }
 
-                        }
+}
+
 export default PageManagement;

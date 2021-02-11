@@ -15,5 +15,10 @@ export const SideBarData = [
         title: 'Page Management',
         path: '/pageManagement',
         cName: 'nav-text'
+    },
+    {
+        title: 'User Role Management',
+        path: '/AllUserRoleManagement',
+        cName: 'nav-text'
     }
 ]

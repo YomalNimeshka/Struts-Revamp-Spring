@@ -28,6 +28,7 @@ public class UserRoleManagementREST {
 
     @GetMapping("UserRoleData/{userRoleCode}")
     public UserRoleManagement getPageD(@PathVariable String userRoleCode){
+        System.out.println("userRoleCode"+userRoleCode);
         return userRoleManagementIF.findById(userRoleCode);
     }
 

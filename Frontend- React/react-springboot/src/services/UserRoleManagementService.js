@@ -1,39 +1,40 @@
 import axios from 'axios';
 
-const PageManagementService_API_BASE_URL = "http://localhost:8080/api/v1/PageMRecords";
-const PageManagementService_API_ADD_URL = "http://localhost:8080/api/v1/AddPage";
-const PageManagementService_API_Delete_URL = "http://localhost:8080/api/v1/DeletePageM";
-const PageManagementService_API_update_URL = "http://localhost:8080/api/v1/updatePageM";
-const PageManagementService_API_get_URL = "http://localhost:8080/api/v1/PageMRecord";
-const PageManagementService_API_Search_URL = "http://localhost:8080/api/v1/SearchPageMRecord";
+const UserRoleManagementService_API_BASE_URL = "http://localhost:8080/api/v1/UserRoleData";
+const UserRoleManagementService_API_ADD_URL = "http://localhost:8080/api/v1/AddUserRole";
+const UserRoleManagementService_API_Delete_URL = "http://localhost:8080/api/v1/DeleteUserRole";
+const UserRoleManagementService_API_update_URL = "http://localhost:8080/api/v1/UpdateUserRole";
+const UserRoleManagementService_API_get_URL = "http://localhost:8080/api/v1/UserRoleData";
+const UserRoleManagementService_API_Search_URL = "http://localhost:8080/api/v1/SearchUserRoleData";
 
 
-class PageManagementService{
+class UserRoleManagementService{
     //calling get method to get all page management records
-    getPageManagementData(){
-        return axios.get(PageManagementService_API_BASE_URL);
+    getUserRoleManagementData(){
+        return axios.get(UserRoleManagementService_API_BASE_URL);
     }
 
     //calling post method to add the page to db
-    addPageManagementData(pageD){
-        return axios.post(PageManagementService_API_ADD_URL, pageD);
+
+    addUserRoleManagement(pageD){
+        return axios.post(UserRoleManagementService_API_ADD_URL, pageD);
     }
 
-    deletePageManagementData(pageCode){
-        return axios.delete(PageManagementService_API_Delete_URL+'/'+pageCode);
+    deleteUserRoleManagement(pageCode){
+        return axios.delete(UserRoleManagementService_API_Delete_URL+'/'+pageCode);
     }
 
-    getOnePageManagementData(pageCode){
-        return axios.get(PageManagementService_API_get_URL+'/'+pageCode);
+    getOneUserRoleManagement(pageCode){
+        return axios.get(UserRoleManagementService_API_get_URL+'/'+pageCode);
     }
 
-    SearchPageManagementData(SearchVal){
-        return axios.get(PageManagementService_API_Search_URL+'/'+SearchVal);
+    SearchUserRoleManagement(SearchVal){
+        return axios.get(UserRoleManagementService_API_Search_URL+'/'+SearchVal);
     }
 
-    updateEmployee(pageD){
-        return axios.put(PageManagementService_API_update_URL,pageD);
+    updateUserRoleManagement(pageD){
+        return axios.put(UserRoleManagementService_API_update_URL,pageD);
     }
 
 }
-export default new PageManagementService()
+export default new UserRoleManagementService()
