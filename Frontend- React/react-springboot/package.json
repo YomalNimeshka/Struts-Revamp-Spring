@@ -52,7 +52,7 @@
     ]
   },
   "devDependencies": {
-    "react-toastify": "^7.0.0",
-    "@fortawesome/fontawesome-free": "^5.15.2"
+    "@fortawesome/fontawesome-free": "^5.15.2",
+    "react-toastify": "^7.0.0"
   }
 }

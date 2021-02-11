@@ -3,7 +3,7 @@ import {decode as base64_decode, encode as base64_encode} from 'base-64';
 import {Button, Form} from "react-bootstrap";
 import UserMgtService from '../../services/UserMgtService';
 import 'font-awesome/css/font-awesome.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@fortawesome/fontawesome-free';
 import $ from 'jquery';
 
 
