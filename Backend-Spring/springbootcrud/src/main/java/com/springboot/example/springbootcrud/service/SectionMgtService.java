@@ -10,4 +10,6 @@ public interface SectionMgtService {
     SectionManagement getSectionWithCode(String code);
     void updateSection(SectionManagement section);
     void deleteSection(String section);
+
+    List<SectionManagement> searchSortKeyData(String val);
 }

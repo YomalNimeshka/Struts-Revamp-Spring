@@ -48,4 +48,10 @@ public class SectionMgtServiceImpl implements SectionMgtService {
     public void deleteSection(String section) {
         sectionMgtDAO.deleteSection(section);
     }
+
+    @Override
+    @Transactional
+    public List<SectionManagement> searchSortKeyData(String val) {
+        return sectionMgtDAO.searchSortKeyData(val);
+    }
 }

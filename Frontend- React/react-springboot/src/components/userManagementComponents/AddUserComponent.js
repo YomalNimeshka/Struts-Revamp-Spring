@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {decode as base64_decode, encode as base64_encode} from 'base-64';
-import {Form} from "react-bootstrap";
+import {Button, Form} from "react-bootstrap";
 import UserMgtService from '../../services/UserMgtService';
+import 'font-awesome/css/font-awesome.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import $ from 'jquery';
+
 
 class AddUserComponent extends Component {
     constructor(props){
@@ -15,9 +19,14 @@ class AddUserComponent extends Component {
            userRoleDescription:'',
            email:'',
            status: '',
-           password: ''
+           password: '',
+           unassignBranch:[],
+           assignBranch:[],
+           currentLsitData:[],
+           newListData:[]
 
         }
+        
 
         this.changeUserNameHandler = this.changeUserNameHandler.bind(this);
         this.changeEmployeeIdHandler = this.changeEmployeeIdHandler.bind(this);
@@ -29,6 +38,9 @@ class AddUserComponent extends Component {
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
 
         this.saveUser = this.saveUser.bind(this);
+
+        this.changeUnassignBranchHandler = this.changeUnassignBranchHandler.bind(this);
+        this.changeAssignBranchHandler = this.changeAssignBranchHandler.bind(this);
     }
     changeUserNameHandler=(event)=>{
         this.setState({username: event.target.value});
@@ -65,7 +77,7 @@ class AddUserComponent extends Component {
            
             let user = {username: this.state.username, employeeId: this.state.employeeId, fullName: this.state.fullName,
                 userRole: this.state.userRole, userRoleDescription: this.state.userRoleDescription,
-                email: this.state.email, status: this.state.status, password: encoded};
+                email: this.state.email, status: this.state.status, password: encoded, assignBranch: this.state.assignBranch};
     
             console.log("Emp object ==> " +JSON.stringify(user));
         
@@ -82,7 +94,76 @@ class AddUserComponent extends Component {
     cancel(){
         this.props.history.push('/User-Mgt/All-Users');
     }
+
+
+    //branch assign funtionalites
+    changeUnassignBranchHandler=(event) =>{
+        //this.setState({value: event.option});
+        this.setState({unassignBranch: Array.from(event.target.selectedOptions, (item) => item.value)});
+        
+    }
+
+
+    changeAssignBranchHandler=(event) =>{
+        //this.setState({value: event.option});
+        this.setState({assignBranch: Array.from(event.target.selectedOptions, (item) => item.value)});
+        
+    }
+    
+    toRight(){
+        $("#currentList option:selected").each(function () {
+
+            $("#newList").append($('<option>', {
+                value: $(this).val(),
+                text: $(this).text()
+            }));
+           // this.state.newListData.append($(this).text);
+            $(this).remove();
+            
+        });
+       
+    }
+
+    toRightAll(){
+        $("#currentList option").each(function () {
+
+            $("#newList").append($('<option>', {
+                value: $(this).val(),
+                text: $(this).text()
+            }));
+            
+            $(this).remove();
+            
+        });
+        
+    }
+
+    toLeft(){
+        $("#newList option:selected").each(function () {
+
+            $("#currentList").append($('<option>', {
+                value: $(this).val(),
+                text: $(this).text()
+            }));
+           // this.state.newListData.remove($(this).text);
+            $(this).remove();
+        });
+    }
+
+    toLeftAll(){
+        $("#newList option").each(function () {
+
+            $("#currentList").append($('<option>', {
+                value: $(this).val(),
+                text: $(this).text()
+            }));
+            //this.state.newListData.remove($(this).text);
+            $(this).remove();
+        });
+    }
+      
     render() {
+        
        
         return (
             <div>
@@ -133,6 +214,75 @@ class AddUserComponent extends Component {
                                                     <option value="Super Admin" >Super Admin</option>
 
                                                 </Form.Control>
+                                        </Form.Group>
+                                    </div>
+
+                                    {/* Branch slection section */}
+                                    <div className="form-group">
+                                        
+                                        <Form.Group controlId='UnassginBranch'>
+                                            <table>
+                                                <tr>
+                                                    <td style={{float: "left"}}><b>Unassign</b></td>
+                                                    <td style={{textAlign: "center"},{ width: "100px"}}></td>
+                                                    <td style={{float: "left"}}><b>Assign</b></td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td style={{float: "right"}}>
+                                                        <Form.Control
+                                                            as="select"
+                                                            name="unassignBranch"
+                                                            placeholder="Unassign branch"
+                                                            value={this.state.unassignBranch}
+                                                            onChange={this.changeUnassignBranchHandler}
+                                                            multiple={true}
+                                                            id="currentList"
+                                                            
+                                                        >
+                                                            {/* CurrentList otpion values has to be taken from db and listed later on. This for now dummy data */}
+                                                            <option value="Wattala" >Wattala</option>
+                                                            <option value="Ragama" >Ragama</option>
+                                                            <option value="Colombo" >Colombo</option>
+                                                            <option value="Rathnapura" >Rathnapura</option>
+                                                            <option value="Chilaw" >Chilaw</option>
+                                                            <option value="Kandy" >Kandy</option>
+
+                                                        </Form.Control>
+                                                    </td>
+
+                                                    <td style={{textAlign: "center"},{width: "100px"}}>
+                                                        {/* buttons */}
+                                                        
+                                                        <Button onClick={this.toRight} style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>     <i className="fas fa-angle-right"></i></Button>
+                                                        <Button onClick={this.toRightAll}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>  <i className="fas fa-angle-double-right"></i></Button>
+                                                        <Button onClick={this.toLeft}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>      <i className="fas fa-angle-left"></i></Button>
+                                                        <Button onClick={this.toLeftAll}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>   <i className="fas fa-angle-double-left"></i></Button>
+                                                       
+
+                                                    </td>
+                                                        
+                                                    <td style={{float: "left"}}>
+                                                        <Form.Control
+                                                                as="select"
+                                                                name="assignBranch"
+                                                                placeholder="Assgin branch"
+                                                                value={this.state.assignBranch}
+                                                                onChange={this.changeAssignBranchHandler}
+                                                                multiple={true}
+                                                                id="newList"
+                                                                
+                                                            >
+                                                               
+                                                                
+
+                                                            </Form.Control>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                                
+                                       
+                                                
                                         </Form.Group>
                                     </div>
 

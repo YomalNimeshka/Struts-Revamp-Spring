@@ -6,6 +6,7 @@ const SECTION_API_ADD_URL = "http://localhost:8080/api/v1/Section Mgt/Add Sectio
 const SECTION_API_GET_SECTIONCODE_URL = "http://localhost:8080/api/v1/Section Mgt/Section-code";
 const SECTION_API_UPDATE_URL = "http://localhost:8080/api/v1/Section Mgt/Section-update";
 const SECTION_API_DELETE_URL = "http://localhost:8080/api/v1/Section Mgt/Section-delete";
+const USER_API_SEARCH_URL = "http://localhost:8080/api/v1/Section Mgt/SearchData";
 
 
 
@@ -33,6 +34,9 @@ class SectionMgtService{
         return axios.delete(SECTION_API_DELETE_URL+'/'+sectionCode);
     }
 
+    search(searchType){
+        return axios.get(USER_API_SEARCH_URL+'/'+searchType)
+    }
     
 }
 export default new SectionMgtService()

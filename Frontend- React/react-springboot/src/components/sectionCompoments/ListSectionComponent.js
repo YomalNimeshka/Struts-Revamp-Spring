@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Card, FormControl, InputGroup, Table} from "react-bootstrap";
+import {Button, Card, FormControl, InputGroup, Table, Form, Col} from "react-bootstrap";
 import SectionMgtService from '../../services/SectionMgtService';
 
 class ListSectionComponent extends Component {
@@ -9,13 +9,16 @@ class ListSectionComponent extends Component {
         this.state = {
             sections:[],
             currentPage:1,
-            usersPerPage:5
+            usersPerPage:5,
+            userTypeSearch:''
 
         }
 
         this.addSection = this.addSection.bind(this);
         this.editSection = this.editSection.bind(this);
         this.deleteSection = this.deleteSection.bind(this);
+
+        this.changeCodeSearch = this.changeCodeSearch.bind(this);
 
 
     }
@@ -87,6 +90,31 @@ class ListSectionComponent extends Component {
             }
         }
 
+        //search
+    SearchUserType = (event) => {
+
+        if (this.state.userTypeSearch === "") {
+            console.log("running if ");
+            SectionMgtService.getSections().then((res) => {
+                this.setState({sections: res.data});
+                console.log(res.data);
+            })
+        } else {
+            console.log("running else");
+            SectionMgtService.search(this.state.userTypeSearch).then((res) => {
+                this.setState({sections: res.data});
+                console.log(res.data);
+            });
+            console.log("running else end");
+        }
+
+        console.log(this.state.userTypeSearch);
+        event.preventDefault();
+    }
+        changeCodeSearch=(event)=>{
+            this.setState({userTypeSearch: event.target.value});
+        }
+
     render() {
         
         const {sections, currentPage, usersPerPage}= this.state;
@@ -116,6 +144,18 @@ class ListSectionComponent extends Component {
                     <button style={{"width":"auto"}} className="btn btn-primary" onClick={this.addSection}>Add Sections</button>
 
                     <Card.Body>
+                            <Form id='SearchUserType' onSubmit={this.SearchUserType}>
+                                <Form.Row>
+                                    <Form.Group as={Col} md="11" controlId='userCode'>
+                                        <Form.Control type="text" name='userTypeSearch'
+                                                    placeholder="Status Code to search" value={this.state.userTypeSearch}
+                                                    onChange={this.changeCodeSearch}/>
+                                    </Form.Group>
+                                    <Form.Group as={Col} md="1">
+                                        <Button variant="primary" type="submit">Search</Button>
+                                    </Form.Group>
+                                </Form.Row>
+                            </Form>
                         <Table bordered hover striped variant="dark">
                             <thead>
                                 <tr>

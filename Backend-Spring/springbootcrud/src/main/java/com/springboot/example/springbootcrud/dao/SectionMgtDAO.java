@@ -12,4 +12,5 @@ public interface SectionMgtDAO {
     void updateSection(SectionManagement section);
     void deleteSection(String section);
 
+    List<SectionManagement> searchSortKeyData(String val);
 }

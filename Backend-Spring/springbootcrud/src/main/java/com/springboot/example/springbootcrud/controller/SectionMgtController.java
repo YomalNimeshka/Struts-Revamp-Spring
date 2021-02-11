@@ -3,6 +3,7 @@ package com.springboot.example.springbootcrud.controller;
 
 import com.springboot.example.springbootcrud.entity.Employee;
 import com.springboot.example.springbootcrud.entity.SectionManagement;
+import com.springboot.example.springbootcrud.entity.UserManagement;
 import com.springboot.example.springbootcrud.service.SectionMgtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,11 @@ public class SectionMgtController {
     public void deleteSection(@PathVariable String sectionCode){
         SectionManagement section = sectionMgtService.getSectionWithCode(sectionCode);
         sectionMgtService.deleteSection(sectionCode);
+    }
+
+    @GetMapping("SearchData/{val}")
+    public List<SectionManagement> search(@PathVariable String val){
+        return sectionMgtService.searchSortKeyData(val);
     }
 
 }

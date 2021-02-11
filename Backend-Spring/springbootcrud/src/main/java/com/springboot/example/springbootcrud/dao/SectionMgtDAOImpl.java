@@ -2,6 +2,7 @@ package com.springboot.example.springbootcrud.dao;
 
 import com.springboot.example.springbootcrud.entity.Employee;
 import com.springboot.example.springbootcrud.entity.SectionManagement;
+import com.springboot.example.springbootcrud.entity.UserManagement;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -63,5 +64,15 @@ public class SectionMgtDAOImpl implements SectionMgtDAO  {
         Query theQuery = currentSession.createQuery("delete from SectionManagement where sectionCode=:sectionCode");
         theQuery.setParameter("sectionCode",section);
         theQuery.executeUpdate();
+    }
+
+    @Override
+    public List<SectionManagement> searchSortKeyData(String val) {
+        Session currentSession =entityManager.unwrap(Session.class);
+        Query<SectionManagement> theQuery = currentSession.createQuery("from SectionManagement where sortKey=:sortkey");
+        theQuery.setParameter("sortkey" ,val);
+        List<SectionManagement> users = theQuery.getResultList();
+        return users;
+    
     }
 }
