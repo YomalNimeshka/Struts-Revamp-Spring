@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Card, Table, Button, InputGroup, FormControl} from 'react-bootstrap';
 import EmployeeService from '../services/EmployeeService';
-import axios from 'axios';
 
 class ListEmployeeComponent extends Component {
     constructor(props){
@@ -23,7 +22,7 @@ class ListEmployeeComponent extends Component {
         this.pdfReport = this.pdfReport.bind(this);
         this.excelReport = this.excelReport.bind(this);
         this.csvReport = this.csvReport.bind(this);
-        
+
     }
 
     //this is to get the @GetMapping from the REST API and get all the values from the relavent method
@@ -38,7 +37,7 @@ class ListEmployeeComponent extends Component {
         this.props.history.push("/AddEmployees");
     }
 
-    
+
 
     //routing the update button
     editEmployee(empId){
@@ -47,9 +46,8 @@ class ListEmployeeComponent extends Component {
 
     //delete option
     deleteEmployee(empId){
+        alert(empId);
         EmployeeService.deleteEmployee(empId).then(res=>{
-            
-
             this.setState({employees: this.state.employees.filter(employee => employee.empId !== empId)});
         });
     }
@@ -86,6 +84,7 @@ class ListEmployeeComponent extends Component {
     }
 
     lastPage = () => {
+
         if(this.state.currentPage < Math.ceil(this.state.employees.length / this.state.usersPerPage)){
             this.setState({
                 currentPage: Math.ceil(this.state.employees.length / this.state.usersPerPage)
@@ -130,12 +129,10 @@ class ListEmployeeComponent extends Component {
              file: event.target.files[0]
          });
      }
-     
+
 
      uploadFile = (event)=>{
          event.preventDefault();
-        
-
           const data = new FormData();
           data.append('file', this.state.file);
           console.log("upload--"+data)
@@ -145,10 +142,6 @@ class ListEmployeeComponent extends Component {
               window.location.reload(false);
               this.props.history.push('/AllEmployees');
           });
-        //   axios.post('http://localhost:8080/api/v1/CSV/upload', data, {
-        //     headers: {
-        //       'Content-Type': 'multipart/form-data'
-        //     }});
      }
 
     render() {
@@ -156,7 +149,7 @@ class ListEmployeeComponent extends Component {
         const lastIndex = currentPage * usersPerPage;
         const firstIndex = lastIndex - usersPerPage;
         const currentUsers = employees.slice(firstIndex, lastIndex);
-        const totalPages = employees.length / usersPerPage;
+        const totalPages = Math.ceil(employees.length / usersPerPage);
 
         const PageNumCss = {
             width: "45px",
@@ -165,23 +158,22 @@ class ListEmployeeComponent extends Component {
             textAlign: "center",
             fontWeight: "bold"
         };
-
         const downloadSuccess={
             color: 'white',
-            
             fontSize: '13px'
         };
         const container={
-            paddingLeft : '100px'
+            paddingLeft : '250px',
+            paddingRight : '200px'
         };
 
         return (
             <div style={container}>
                 <Card className={"border border-dark bg-dark text-white"}>
                     <Card.Header><h3>Employee List</h3></Card.Header>
-                    
+
                     <button style={{"width":"auto"}} className="btn btn-primary" onClick={this.addEmployee}>Add Employees</button>
-                    
+
                     <Card.Body>
                         <Table bordered hover striped variant="dark">
                             <thead>
@@ -215,9 +207,9 @@ class ListEmployeeComponent extends Component {
                     </Card.Body>
                     <Card.Footer>
                         <div>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.pdfReport}>Download PDF</button>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.excelReport}>Download Excel</button>
-                            <button style={{"width":"auto"}, {"marginRight":"5px"}} className="btn btn-primary" onClick={this.csvReport}>Download CSV</button>
+                            <button style={{width:"auto",marginRight:"5px"}} className="btn btn-primary" onClick={this.pdfReport}>Download PDF</button>
+                            <button style={{width:"auto", marginRight:"5px"}} className="btn btn-primary" onClick={this.excelReport}>Download Excel</button>
+                            <button style={{width:"auto", marginRight:"5px"}} className="btn btn-primary" onClick={this.csvReport}>Download CSV</button>
                         </div>
                         <div style={{"marginTop":"5px"}}>
                            <input onChange={this.onFileChange} type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"></input>
@@ -238,12 +230,12 @@ class ListEmployeeComponent extends Component {
                                         First
 
                                     </Button>
-                                    <Button type="button" variant="outline-info" disabled={currentPage === 1? true : false} 
+                                    <Button type="button" variant="outline-info" disabled={currentPage === 1? true : false}
                                         onClick={this.prevPage}>
                                         Prev
                                     </Button>
                                 </InputGroup.Prepend>
-                                <FormControl style={PageNumCss} className="bg-dark" name="currentPage" value={currentPage} 
+                                <FormControl style={PageNumCss} className="bg-dark" name="currentPage" value={currentPage}
                                     onChange={this.changePage} />
                                 <InputGroup.Append>
                                     <Button type="button" variant="outline-info" disabled={currentPage === totalPages? true : false}
@@ -260,44 +252,6 @@ class ListEmployeeComponent extends Component {
                     </Card.Footer>
                 </Card>
 
-
-               {/* <h2 className="text-center">Employee List</h2>
-                <div className="row">
-                    <button className="btn btn-primary" onClick={this.addEmployee}>Add Employees</button>
-                </div>
-                <div className="row">
-                    <table className="table table-striped table-dark">
-
-                        <thead>
-                            <tr>
-                                <th>Employee Id</th>
-                                <th>Employee Name</th>
-                                <th>Employee Salary</th>
-                                <th>Employee Designation</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {
-                                currentUsers.map(
-                                    employee =>
-                                    <tr key = {employee.empId}>
-                                        <td>{employee.empId}</td>
-                                        <td>{employee.empName}</td>
-                                        <td>{employee.empSalary}</td>
-                                        <td>{employee.empDesignation}</td>
-                                        <td>
-                                            <button onClick= { () => this.editEmployee(employee.empId)} className="btn btn-info">Update</button>
-                                            <button style={{marginLeft:"10px"}} onClick= { () => this.deleteEmployee(employee.empId)} className="btn btn-danger">Delete</button>
-                                        </td>
-                                    </tr>
-                                )
-                            }
-                        </tbody>
-                        
-                    </table>
-                </div>*/}
             </div>
         );
     }

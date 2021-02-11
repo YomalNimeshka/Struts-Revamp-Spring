@@ -15,9 +15,7 @@ class UpdateEmployeeComponent extends Component {
         this.changeNameHandler = this.changeNameHandler.bind(this);
         this.changeSalaryHandler = this.changeSalaryHandler.bind(this);
         this.changeDesignationHandler = this.changeDesignationHandler.bind(this);
-
         this.updateEmp = this.updateEmp.bind(this);
-        
     }
 
     componentDidMount(){
@@ -58,8 +56,12 @@ class UpdateEmployeeComponent extends Component {
     }
 
     render() {
+        const container={
+            paddingLeft : '250px',
+            paddingRight : '200px'
+        };
         return (
-            <div>
+            <div style={container}>
             <div className="container">
                 <div className="row">
                     <div className="card col-md-6 offset-md-3 offset-md-3">
