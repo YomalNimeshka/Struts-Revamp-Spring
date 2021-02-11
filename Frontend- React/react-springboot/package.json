@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
@@ -10,6 +13,8 @@
     "base-64": "^1.0.0",
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.5.3",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.5.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.3",
     "react-bootstrap-sidebar": "0.0.1",
@@ -47,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "react-toastify": "^7.0.0"
+    "react-toastify": "^7.0.0",
+    "@fortawesome/fontawesome-free": "^5.15.2"
   }
 }
