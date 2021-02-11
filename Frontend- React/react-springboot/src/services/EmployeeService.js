@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/Employees";
-const EMPLOYEE_API_LOGIN_URL = "http://localhost:8080/api/v1/Login";
-const EMPLOYEE_API_ADD_URL = "http://localhost:8080/api/v1/AddEmp";
-const EMPLOYEE_API_GET_EMPID_URL = "http://localhost:8080/api/v1/EmpId";
-const EMPLOYEE_API_UPDATE_URL = "http://localhost:8080/api/v1/UpdateEmp";
-const EMPLOYEE_API_DELETE_URL = "http://localhost:8080/api/v1/DeleteEmp";
-const EMPLOYEE_API_REPORT_PDF_URL = "http://localhost:8080/api/v1/Report";
-const EMPLOYEE_API_CSV_UPLOAD_URL = "http://localhost:8080/api/v1/CSV/upload";
+const EMPLOYEE_API_BASE_URL = "http://localhost:8080/api/v1/Employees/Employees";
+const EMPLOYEE_API_LOGIN_URL = "http://localhost:8080/api/v1/Employees/Login";
+const EMPLOYEE_API_ADD_URL = "http://localhost:8080/api/v1/Employees/AddEmp";
+const EMPLOYEE_API_GET_EMPID_URL = "http://localhost:8080/api/v1/Employees/EmpId";
+const EMPLOYEE_API_UPDATE_URL = "http://localhost:8080/api/v1/Employees/UpdateEmp";
+const EMPLOYEE_API_DELETE_URL = "http://localhost:8080/api/v1/Employees/DeleteEmp";
+const EMPLOYEE_API_REPORT_PDF_URL = "http://localhost:8080/api/v1/Employees/Report";
+const EMPLOYEE_API_CSV_UPLOAD_URL = "http://localhost:8080/api/v1/Employees/CSV/upload";
 
 
 class EmployeeService{
