@@ -73,19 +73,23 @@ class AddUserComponent extends Component {
     saveUser = (e)=>{
         e.preventDefault();
             let encoded = base64_encode(this.state.password);
-            
+            var branchOptions = $('#newList option');
+
+            var branchValues = $.map(branchOptions ,function(option) {
+                return option.value;
+            });
            
             let user = {username: this.state.username, employeeId: this.state.employeeId, fullName: this.state.fullName,
                 userRole: this.state.userRole, userRoleDescription: this.state.userRoleDescription,
-                email: this.state.email, status: this.state.status, password: encoded, assignBranch: this.state.assignBranch};
+                email: this.state.email, status: this.state.status, password: encoded, assignBranch: branchValues};
     
             console.log("Emp object ==> " +JSON.stringify(user));
         
-        
+            
 
-    UserMgtService.addUser(user).then(res =>{
-            this.props.history.push('/User-Mgt/All-Users');
-        })
+            UserMgtService.addUser(user).then(res =>{
+                this.props.history.push('/User-Mgt/All-Users');
+            })
     }
 
      
@@ -107,6 +111,7 @@ class AddUserComponent extends Component {
     changeAssignBranchHandler=(event) =>{
         //this.setState({value: event.option});
         this.setState({assignBranch: Array.from(event.target.selectedOptions, (item) => item.value)});
+       //this.setState({assignBranch: event.target.value})
         
     }
     
