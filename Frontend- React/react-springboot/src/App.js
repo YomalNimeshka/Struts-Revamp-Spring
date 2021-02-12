@@ -20,6 +20,8 @@ import ListUserComponent from './components/userManagementComponents/ListUserCom
 import AddUserComponent from './components/userManagementComponents/AddUserComponent';
 import UpdateUserComponent from './components/userManagementComponents/UpdateUserComponent';
 
+import SideBar from "./components/slideBarComponent/SideBar";
+
 import React from "react";
 
 
@@ -29,10 +31,11 @@ function App() {
             <div style={{backgroundColor: '#060b26', height: '100%'}}>
 
                 <Router >
-                    <NavBar/>
+                    {/*<NavBar/>*/}
+                    <SideBar/>
 
 
-                        <Switch>
+                    <Switch>
                             <Route path="/" exact component={ViewPageComponent}></Route>
 
                             <Route path="/Login" component={LoginComponent}></Route>
