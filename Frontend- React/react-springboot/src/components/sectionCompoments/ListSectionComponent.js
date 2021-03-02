@@ -25,6 +25,7 @@ class ListSectionComponent extends Component {
 
         //this is to get the @GetMapping from the REST API and get all the values from the relavent method
         componentDidMount(){
+        console.log(this.setState.sections)
             SectionMgtService.getSections().then((res)=>{
                 this.setState({ sections: res.data});
             })
@@ -131,9 +132,10 @@ class ListSectionComponent extends Component {
             fontWeight: "bold"
         };
 
-       
+
         const container={
-            paddingLeft : '100px'
+            paddingLeft : '250px',
+            paddingRight : '100px'
         };
 
         return (

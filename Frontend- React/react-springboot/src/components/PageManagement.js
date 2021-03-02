@@ -27,6 +27,8 @@ class PageManagement extends React.Component {
         })
     }
 
+
+
     update = (pageCode) => {
         this.props.history.push(`/UpdatePageManagementData/${pageCode}`);
     }

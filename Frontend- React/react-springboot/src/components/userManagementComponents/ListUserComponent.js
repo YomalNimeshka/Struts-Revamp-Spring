@@ -132,13 +132,10 @@ class ListUserComponent extends Component {
             fontWeight: "bold"
         };
 
-        const downloadSuccess={
-            color: 'white',
-            
-            fontSize: '13px'
-        };
+
         const container={
-            paddingLeft : '100px'
+            paddingLeft : '250px',
+            paddingRight : '100px'
         };
 
         return (
@@ -171,7 +168,7 @@ class ListUserComponent extends Component {
                                 <th>Userrole Description</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th>Actions</th>
+                                <th colSpan="2">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -188,6 +185,8 @@ class ListUserComponent extends Component {
                                         <td>{user.status}</td>
                                         <td>
                                             <button onClick= { () => this.editUser(user.employeeId)} className="btn btn-info">Update</button>
+                                        </td>
+                                        <td>
                                             <button style={{marginLeft:"10px"}} onClick= { () =>{if(window.confirm('Are you sure to delete this record?')) {this.deleteUser(user.employeeId)}}} className="btn btn-danger">Delete</button>
                                         </td>
                                     </tr>

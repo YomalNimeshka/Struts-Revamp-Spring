@@ -102,4 +102,17 @@ public class PageManagement {
     public int hashCode() {
         return Objects.hash(pageCode, description, url, sortKey, status, dualAuth, remarks);
     }
+
+    @Override
+    public String toString() {
+        return "PageManagement{" +
+                "pageCode='" + pageCode + '\'' +
+                ", description='" + description + '\'' +
+                ", url='" + url + '\'' +
+                ", sortKey=" + sortKey +
+                ", status='" + status + '\'' +
+                ", dualAuth='" + dualAuth + '\'' +
+                ", remarks='" + remarks + '\'' +
+                '}';
+    }
 }

@@ -11,55 +11,65 @@ import UpdatePageManagementData from "./components/updatePageManagementData";
 import ListUserRoleManagement from "./components/UserRoleManagementJS/ListUserRoleManagement";
 import AddUserRole from "./components/UserRoleManagementJS/AddUserRole";
 import UpdateUserRole from "./components/UserRoleManagementJS/UpdateUserRole";
+import UserRoleSectionPageAssign from "./components/UserRoleManagementJS/UserRoleSectionPageAssign";
 
-import NavBar from './components/NavBar';
 import ListSectionComponent from './components/sectionCompoments/ListSectionComponent';
 import AddSectionComponent from './components/sectionCompoments/AddSectionComponent';
 import UpdateSectionComponent from './components/sectionCompoments/UpdateSectionComponent';
 import ListUserComponent from './components/userManagementComponents/ListUserComponent';
 import AddUserComponent from './components/userManagementComponents/AddUserComponent';
 import UpdateUserComponent from './components/userManagementComponents/UpdateUserComponent';
-
 import SideBar from "./components/slideBarComponent/SideBar";
+import UserSectionPasges from "./components/UserSectionPasges";
+import BootstrapModal from "./components/testModel/BootstrapModal";
+
 
 import React from "react";
-
 
 function App() {
     return (
         <div className="Container">
             <div style={{backgroundColor: '#060b26', height: '100%'}}>
 
-                <Router >
+                <Router>
                     {/*<NavBar/>*/}
                     <SideBar/>
 
 
                     <Switch>
-                            <Route path="/" exact component={ViewPageComponent}></Route>
+                        <Route path="/" exact component={ViewPageComponent}></Route>
 
-                            <Route path="/Login" component={LoginComponent}></Route>
+                        <Route path="/Login" component={LoginComponent}></Route>
 
-                            <Route path="/AllEmployees" component={ListEmployeeComponent}></Route>
-                            <Route path="/AddEmployees" component={AddEmployeeComponent}></Route>
-                            <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent}></Route>
+                        <Route path="/BootstrapModal" component={BootstrapModal}></Route>
 
-                            <Route path="/AllUserRoleManagement" component={ListUserRoleManagement}></Route>
-                            <Route path="/AddUserRole" component={AddUserRole}></Route>
-                            <Route path="/UpdateUserRole/:userRoleCode" component={UpdateUserRole}></Route>
 
-                            <Route path="/pageManagement" component={PageManagement}></Route>
-                            <Route path="/AddUpdatePageM" component={AddUpdatePageM}></Route>
-                            <Route path="/UpdatePageManagementData/:pageCode" component={UpdatePageManagementData}></Route>
 
-                            <Route path="/Section-Mgt/All-Sections" component={ListSectionComponent} ></Route>
-                            <Route path="/Section-Mgt/Add-Section" component={AddSectionComponent} ></Route>
-                            <Route path="/Section-Mgt/Update-Section/:sectionCode" component={UpdateSectionComponent} ></Route>
 
-                            <Route path="/User-Mgt/All-Users" component={ListUserComponent} ></Route>
-                            <Route path="/User-Mgt/Add-User" component={AddUserComponent} ></Route>
-                            <Route path="/User-Mgt/Update-User/:employeeId" component={UpdateUserComponent} ></Route>
-                        </Switch>
+                        <Route path="/AllEmployees" component={ListEmployeeComponent}></Route>
+                        <Route path="/AddEmployees" component={AddEmployeeComponent}></Route>
+                        <Route path="/UpdateEmployee/:empId" component={UpdateEmployeeComponent}></Route>
+
+                        <Route path="/AllUserRoleManagement" component={ListUserRoleManagement}></Route>
+                        <Route path="/AddUserRole" component={AddUserRole}></Route>
+                        <Route path="/UpdateUserRole/:userRoleCode" component={UpdateUserRole}></Route>
+                        <Route path="/UserSectionPasges/:userRoleCode" component={UserSectionPasges}></Route>
+
+
+
+                        <Route path="/pageManagement" component={PageManagement}></Route>
+                        <Route path="/AddUpdatePageM" component={AddUpdatePageM}></Route>
+                        <Route path="/UpdatePageManagementData/:pageCode" component={UpdatePageManagementData}></Route>
+
+                        <Route path="/Section-Mgt/All-Sections" component={ListSectionComponent}></Route>
+                        <Route path="/Section-Mgt/Add-Section" component={AddSectionComponent}></Route>
+                        <Route path="/Section-Mgt/Update-Section/:sectionCode"
+                               component={UpdateSectionComponent}></Route>
+
+                        <Route path="/User-Mgt/All-Users" component={ListUserComponent}></Route>
+                        <Route path="/User-Mgt/Add-User" component={AddUserComponent}></Route>
+                        <Route path="/User-Mgt/Update-User/:employeeId" component={UpdateUserComponent}></Route>
+                    </Switch>
 
                 </Router>
             </div>

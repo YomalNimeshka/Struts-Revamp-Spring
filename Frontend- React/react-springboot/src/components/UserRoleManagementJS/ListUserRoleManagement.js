@@ -70,6 +70,9 @@ class ListUserRoleManagement extends Component {
     update = (userRoleCode) => {
         this.props.history.push(`/UpdateUserRole/${userRoleCode}`);
     }
+    assignPageTask = (userRoleCode) => {
+        this.props.history.push(`/UserSectionPasges/${userRoleCode}`);
+    }
 
     SearchUserType = (event) => {
 
@@ -105,9 +108,9 @@ class ListUserRoleManagement extends Component {
             textAlign: "center",
             fontWeight: "bold"
         };
-        const container = {
-            paddingLeft: '250px',
-            paddingRight: '200px'
+        const container={
+            paddingLeft : '250px',
+            paddingRight : '200px'
         };
 
         return (
@@ -168,7 +171,7 @@ class ListUserRoleManagement extends Component {
                                                 </Button>
                                             </td>
                                             <td>
-                                                <Button variant="secondary" size="sm">
+                                                <Button variant="secondary" size="sm" onClick={() => this.assignPageTask(URMData.userRoleCode)}>
                                                     change
                                                 </Button>
                                             </td>

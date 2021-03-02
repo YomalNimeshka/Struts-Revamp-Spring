@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {decode as base64_decode, encode as base64_encode} from 'base-64';
+import {encode as base64_encode} from 'base-64';
 import {Button, Form} from "react-bootstrap";
 import UserMgtService from '../../services/UserMgtService';
 import 'font-awesome/css/font-awesome.min.css';
@@ -224,7 +224,7 @@ class AddUserComponent extends Component {
                                             <table>
                                                 <tr>
                                                     <td style={{float: "left"}}><b>Unassign</b></td>
-                                                    <td style={{textAlign: "center"},{ width: "100px"}}></td>
+                                                    <td style={{textAlign: "center",width: "100px"}}></td>
                                                     <td style={{float: "left"}}><b>Assign</b></td>
                                                 </tr>
 
@@ -251,13 +251,13 @@ class AddUserComponent extends Component {
                                                         </Form.Control>
                                                     </td>
 
-                                                    <td style={{textAlign: "center"},{width: "100px"}}>
+                                                    <td style={{textAlign: "center",width: "100px"}}>
                                                         {/* buttons */}
                                                         
-                                                        <Button onClick={this.toRight} style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>     <i className="fas fa-angle-right"></i></Button>
-                                                        <Button onClick={this.toRightAll}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>  <i className="fas fa-angle-double-right"></i></Button>
-                                                        <Button onClick={this.toLeft}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>      <i className="fas fa-angle-left"></i></Button>
-                                                        <Button onClick={this.toLeftAll}  style={{fontSize:"10px"},{width:"30px"},{margin:"2px"}}>   <i className="fas fa-angle-double-left"></i></Button>
+                                                        <Button onClick={this.toRight} style={{fontSize:"10px",width:"30px",margin:"2px"}}>     <i className="fas fa-angle-right"></i></Button>
+                                                        <Button onClick={this.toRightAll}  style={{fontSize:"10px",width:"30px",margin:"2px"}}>  <i className="fas fa-angle-double-right"></i></Button>
+                                                        <Button onClick={this.toLeft}  style={{fontSize:"10px" , width:"30px", margin:"2px"}}>      <i className="fas fa-angle-left"></i></Button>
+                                                        <Button onClick={this.toLeftAll}  style={{fontSize:"10px",width:"30px",margin:"2px"}}>   <i className="fas fa-angle-double-left"></i></Button>
                                                        
 
                                                     </td>

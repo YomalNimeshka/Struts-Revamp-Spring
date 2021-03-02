@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { SidebarData } from "./SideBarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
+import PageManagementService from "../../services/PageManagementService";
+import NavBarService from "../../services/NavBarService";
+import {SidebarData} from "./SideBarData";
 
 const Nav = styled.div` 
   background: #15171c; 
@@ -43,6 +45,14 @@ const SidebarWrap = styled.div`
 
 const Sidebar = () => {
     const [sidebar, setSidebar] = useState(false);
+    const [data,setData]=useState([]);
+    useEffect(() => {
+        NavBarService.getNavBarData().then((res) => {
+            setData(res.data);
+        })
+        });
+
+
 
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -66,7 +76,7 @@ const Sidebar = () => {
                         <NavIcon to="#">
                             <AiIcons.AiOutlineClose onClick={showSidebar} />
                         </NavIcon>
-                        {SidebarData.map((item, index) => {
+                        {data.map((item, index) => {
                             return <SubMenu item={item} key={index} />;
                         })}
                     </SidebarWrap>

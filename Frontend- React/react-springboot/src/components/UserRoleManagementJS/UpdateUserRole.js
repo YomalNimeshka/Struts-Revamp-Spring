@@ -16,6 +16,7 @@ class UpdateUserRole extends Component {
             status: "",
             userRoleType: ""
         };
+        console.log(this.state.userRoleCode);
     }
     componentDidMount(){
         UserRoleManagementService.getOneUserRoleManagement(this.state.userRoleCode).then( (res) =>{

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import * as RiIcons from "react-icons/ri";
 
 const SidebarLink = styled(Link)` 
   display: flex; 
@@ -55,9 +56,9 @@ const SubMenu = ({ item }) => {
                 </div>
                 <div>
                     {item.subNav && subnav
-                        ? item.iconOpened
+                        ? <RiIcons.RiArrowUpSFill />
                         : item.subNav
-                            ? item.iconClosed
+                            ? <RiIcons.RiArrowDownSFill />
                             : null}
                 </div>
             </SidebarLink>
